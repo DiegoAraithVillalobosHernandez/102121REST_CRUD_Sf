@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <table id="table" style="border: 1px solid black">
+            <thead>
+                <tr>
+                    <th>Nombre Producto</th>
+                    <th>Precio</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:80/nueva%20carpeta/sf/public/'
+        }).done(function(res){
+            console.log(res.listProducts);
+            let products = res.listProducts;
+            let table = $("#table");
+            for(let i = 0; i < products.length; i++){
+                table.append("<tr><td>"+products[i].name+"</td><td>"+products[i].precio+"</td><td>"+((products[i].status===1)?"Activo":"Inactivo")+"</td></tr>")
+            }
+        });
+    </script>
+
+</body>
+</html>
